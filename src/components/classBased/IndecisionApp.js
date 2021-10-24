@@ -4,11 +4,13 @@ import Action from './components/Action';
 import Options from './components/Options';
 import AddOption from './components/AddOption';
 import Disclaimer from './components/Disclaimer';
+import OptionModal from './components/OptionModal';
 
 class IndecisionApp extends Component{
     constructor(props){
         super(props);
         this.state = {
+            selectedOption: undefined,
             options: props.options
         }
     }
@@ -56,8 +58,10 @@ class IndecisionApp extends Component{
 
     handlePick = () => {
         const randomNum = Math.floor(Math.random() * this.state.options.length);
-        alert(`You should: ${this.state.options[randomNum]}`);
+        this.setState(() => ({selectedOption: this.state.options[randomNum]}));
     }
+
+    handleClearSelectedOption = () => this.setState(() => ({selectedOption: undefined}));
 
     render(){
         const title = "Indecision App";
@@ -77,6 +81,9 @@ class IndecisionApp extends Component{
                 />
                 <AddOption handleAddOption={this.handleAddOption}/>
                 <Disclaimer disclaimerText={disclaimerText} />
+                <OptionModal 
+                    selectedOption={this.state.selectedOption} 
+                    handleClearSelectedOption={this.handleClearSelectedOption}/>
             </div>
         );
     }

@@ -1,4 +1,5 @@
 import './App.css';
+import Layout from './components/functional/Layout';
 import IndecisionApp from './components/classBased/IndecisionApp';
 
 const options = [
@@ -8,9 +9,9 @@ const options = [
 ];
 
 const App = () => (
-    <div className="App">
-      <IndecisionApp />
-    </div>
+    <Layout className="App">
+      <IndecisionApp/>
+    </Layout>
 );
 
 
