@@ -9,7 +9,7 @@ const options = [
 
 const App = () => (
     <div className="App">
-      <IndecisionApp options={options}/>
+      <IndecisionApp />
     </div>
 );
 
