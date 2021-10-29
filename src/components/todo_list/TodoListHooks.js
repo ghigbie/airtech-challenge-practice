@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Typography, Paper, AppBar, Toolbar, Grid} from "@material-ui/core";
-import TodoList from './TodoList'
+import TodoForm from './TodoForm';
+import TodoList from './TodoList';
 
 const paperStyles = {
     padding: 0,
@@ -17,6 +18,19 @@ const TodoListHooks = () => {
     ];
     const [todos, setTodos] = useState(initialTodos);
 
+    const addTodo = (e) => {
+        e.preventDefault();
+        setTodos([...todos, {id: 4, task: e.target.value, completed: false}])
+    }
+
+    const deleteTodo = () => {
+
+    }
+
+    const editTodo = () => {
+        
+    }
+
     return (
         <Paper style={paperStyles}>
             <AppBar 
@@ -28,6 +42,7 @@ const TodoListHooks = () => {
                         <Typography color='inherit'>Todos with Hooks</Typography>
                     </Toolbar>
             </AppBar>
+            <TodoForm addTodo={addTodo} />
             <TodoList todos={todos} />
         </Paper>
     )
