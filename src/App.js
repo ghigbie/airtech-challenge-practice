@@ -1,6 +1,8 @@
 import './App.css';
 import Layout from './components/functional/Layout';
 import IndecisionApp from './components/classBased/IndecisionApp';
+import TodoListHooks from './components/todo_list/TodoListHooks';
+import WordTableApp from './components/code_sandbox/WordTableApp';
 
 const options = [
         'Walk the dog',
@@ -11,6 +13,10 @@ const options = [
 const App = () => (
     <Layout className="App">
       <IndecisionApp/>
+      <hr/>
+      <TodoListHooks />
+      <hr/>
+      <WordTableApp />
     </Layout>
 );
 
