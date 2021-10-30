@@ -1,7 +1,7 @@
 import { ListItem,  Divider, ListItemText, Checkbox, ListItemSecondaryAction, IconButton} from "@material-ui/core";
-import {DeleteIcon, EditIcon} from "@material-ui/icons"
+import {Delete, Edit} from "@material-ui/icons"
 
-const Todo = ({ todo, deleteTodo, editTodo }) => {
+const Todo = ({ todo, deleteTodo, editTodo, setCompleted }) => {
     const {task, completed, id} = todo;
 
     return (
@@ -10,6 +10,7 @@ const Todo = ({ todo, deleteTodo, editTodo }) => {
                 <Checkbox 
                     tabIndex={-1} 
                     checked={completed}
+                    onClick={() => setCompleted(todo)}
                 />
                 <ListItemText 
                     style={{textDecoration: completed ? "line-through" : "none"}}
@@ -21,13 +22,13 @@ const Todo = ({ todo, deleteTodo, editTodo }) => {
                         aria-label="delete"
                         onClick={() => deleteTodo(id)}
                     >
-                        <DeleteIcon/>
+                        <Delete/>
                     </IconButton>      
                     <IconButton 
                         aria-label="edit"
                         onClick={() => editTodo(id)}
                     >
-                        <EditIcon/>
+                        <Edit/>
                     </IconButton>
                 </ListItemSecondaryAction>
             </ListItem>

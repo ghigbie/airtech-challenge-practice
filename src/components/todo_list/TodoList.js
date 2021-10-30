@@ -1,16 +1,17 @@
 import { List, Paper } from "@material-ui/core";
 import Todo from './Todo'
 
-const TodoList = ({todos, deleteTodo, editTodo }) => {
+const TodoList = ({todos, deleteTodo, editTodo, setCompleted }) => {
     return (
         <Paper style={{margin: "1rem 0", padding: "0 1rem"}}>
             <List>
                 {todos.map(todo => (
                     <Todo 
-                        task={todo} 
+                        todo={todo} 
                         key={todo.id} 
-                        deleteTodo={deleteTodo} 
                         editTodo={editTodo}
+                        deleteTodo={deleteTodo}
+                        setCompleted={setCompleted}
                     />
                 ))}
             </List>

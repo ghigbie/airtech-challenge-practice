@@ -18,17 +18,21 @@ const TodoListHooks = () => {
     ];
     const [todos, setTodos] = useState(initialTodos);
 
-    const addTodo = (e) => {
-        e.preventDefault();
-        setTodos([...todos, {id: 4, task: e.target.value, completed: false}])
+    const addTodo = (e) => setTodos([...todos, {id: 4, task: e.target.value, completed: false}]);
+
+    const deleteTodo = id => setTodos(todos.filter( todo => todo.id !== id));
+
+    const setCompleted = compTodo => {
+        const completedTodo = todos.find(todo => todo.id === compTodo.id);
+        completedTodo.completed = !completedTodo.completed;
+        const allTodos = todos.filter(todo => todo.id !== compTodo.id);
+        setTodos([...allTodos, completedTodo])
     }
 
-    const deleteTodo = () => {
-
-    }
-
-    const editTodo = () => {
-        
+    const editTodo = (newTask, id)=> {
+        const editedTodo = todos.filter(todo => todo.id === id);
+        editedTodo.task = newTask;
+        setTodos([...todos, editTodo]);
     }
 
     return (
@@ -42,8 +46,17 @@ const TodoListHooks = () => {
                         <Typography color='inherit'>Todos with Hooks</Typography>
                     </Toolbar>
             </AppBar>
-            <TodoForm addTodo={addTodo} />
-            <TodoList todos={todos} />
+            <Grid container justify='center'>
+                <Grid item xs={11} md={8} lg={4} style={{marginTop: '1rem'}}>
+                    <TodoForm addTodo={addTodo} />
+                    <TodoList 
+                        todos={todos} 
+                        editTodo={editTodo}
+                        deleteTodo={deleteTodo}
+                        setCompleted={setCompleted}
+                    />
+                </Grid>
+            </Grid>
         </Paper>
     )
 }
