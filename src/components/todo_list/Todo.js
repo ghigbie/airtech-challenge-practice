@@ -1,8 +1,10 @@
+import {useState} from 'react';
 import { ListItem,  Divider, ListItemText, Checkbox, ListItemSecondaryAction, IconButton} from "@material-ui/core";
 import {Delete, Edit} from "@material-ui/icons"
+import EditTodoForm from './EditTodoForm';
 
 const Todo = ({ task, completed, id, deleteTodo, editTodo, toggleCompleted }) => {
-
+    const [isSet, setIsSet] = useState(false)
 
     return (
         <>
@@ -12,11 +14,13 @@ const Todo = ({ task, completed, id, deleteTodo, editTodo, toggleCompleted }) =>
                     checked={completed}
                     onClick={() => toggleCompleted(id)}
                 />
-                <ListItemText 
-                    style={{textDecoration: completed ? "line-through" : "none"}}
-                >
-                    {task}
-                </ListItemText>
+                {isSet ? 
+                    (<ListItemText style={{textDecoration: completed ? "line-through" : "none"}}>
+                        {task}
+                    </ListItemText>)
+                    :
+                    (<EditTodoForm editTodo={editTodo} id={id}/>)
+                }
                 <ListItemSecondaryAction>
                     <IconButton 
                         aria-label="delete"
@@ -26,7 +30,7 @@ const Todo = ({ task, completed, id, deleteTodo, editTodo, toggleCompleted }) =>
                     </IconButton>      
                     <IconButton 
                         aria-label="edit"
-                        onClick={() => editTodo(id)}
+                        onClick={() => setIsSet(!isSet)}
                     >
                         <Edit/>
                     </IconButton>
