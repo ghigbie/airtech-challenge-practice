@@ -18,20 +18,14 @@ const TodoListHooks = () => {
         {id: uuidv4(), task: 'Freeze water', completed: false},
     ];
     const [todos, setTodos] = useState(initialTodos);
-    console.log(todos);
 
     const addTodo = task => setTodos([...todos, {id: uuidv4(), task: task, completed: false}]);
 
     const deleteTodo = id => setTodos(todos.filter( todo => todo.id !== id));
 
     const toggleCompleted = id => setTodos(todos.map( todo => todo.id === id ? {...todo, completed: !todo.completed} : todo));
-    
 
-    const editTodo = (newTask, id)=> {
-        const editedTodo = todos.filter(todo => todo.id === id);
-        editedTodo.task = newTask;
-        setTodos([...todos, editTodo]);
-    }
+    const editTodo = (newTask, id)=> setTodos(todos.map(todo => todo.id === id ? {...todo, task: newTask} : todo));
 
     const todoFunctions = { addTodo, deleteTodo, toggleCompleted, editTodo};
 
@@ -46,7 +40,7 @@ const TodoListHooks = () => {
                         <Typography color='inherit'>Todos with Hooks</Typography>
                     </Toolbar>
             </AppBar>
-            <Grid container justify='center'>
+            <Grid container justifyContent='center'>
                 <Grid item xs={11} md={8} lg={4} style={{marginTop: '1rem'}}>
                     <TodoForm addTodo={addTodo} />
                     <TodoList 

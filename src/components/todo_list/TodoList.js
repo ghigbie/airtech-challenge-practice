@@ -10,7 +10,6 @@ const TodoList = ({todos, todoFunctions}) => {
                         {...todo}
                         {...todoFunctions}
                         key={todo.id} 
-                        
                     />
                 ))}
             </List>
