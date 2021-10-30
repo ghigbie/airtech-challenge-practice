@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Typography, Paper, AppBar, Toolbar, Grid} from "@material-ui/core";
 import { v4 as uuidv4 } from 'uuid';
 import TodoForm from './TodoForm';
@@ -12,12 +12,18 @@ const paperStyles = {
 }
 
 const TodoListHooks = () => {
-    const initialTodos = [
+    const initialTodos = JSON.parse(window.localStorage.getItem('todos'))
+    const preLoad = [
         {id: uuidv4(), task: 'Hunt Rabbits', completed: false},
         {id: uuidv4(), task: 'Walk dogs', completed: false},
         {id: uuidv4(), task: 'Freeze water', completed: false},
     ];
     const [todos, setTodos] = useState(initialTodos);
+
+    useEffect(() => {
+        if(!initialTodos){setTodos(preLoad)}
+        window.localStorage.setItem("todos", JSON.stringify(todos))
+    }, [todos])
 
     const addTodo = task => setTodos([...todos, {id: uuidv4(), task: task, completed: false}]);
 

@@ -1,4 +1,4 @@
-import { ListItem,  Divider, ListItemText, Checkbox, ListItemSecondaryAction, IconButton} from "@material-ui/core";
+import { ListItem, ListItemText, Checkbox, ListItemSecondaryAction, IconButton} from "@material-ui/core";
 import {Delete, Edit} from "@material-ui/icons"
 import EditTodoForm from './EditTodoForm';
 import useToggleState from './hooks/useToggleState';
@@ -7,8 +7,7 @@ const Todo = ({ task, completed, id, deleteTodo, editTodo, toggleCompleted }) =>
     const [isEditing, toggleIsEditing] = useToggleState();
 
     return (
-        <>
-            <ListItem style={{height: "64px"}}>
+        <ListItem style={{height: "64px"}}>
             { isEditing ? 
                (<EditTodoForm 
                     editTodo={editTodo} 
@@ -45,9 +44,7 @@ const Todo = ({ task, completed, id, deleteTodo, editTodo, toggleCompleted }) =>
                 </ListItemSecondaryAction>
                </>)
             }
-            </ListItem>
-            <Divider/>
-        </>
+        </ListItem>
     )
 }
 
