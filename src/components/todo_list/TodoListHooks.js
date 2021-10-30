@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Typography, Paper, AppBar, Toolbar, Grid} from "@material-ui/core";
+import { v4 as uuidv4 } from 'uuid';
 import TodoForm from './TodoForm';
 import TodoList from './TodoList';
 
@@ -12,28 +13,27 @@ const paperStyles = {
 
 const TodoListHooks = () => {
     const initialTodos = [
-        {id: 1, task: 'Hunt Rabbits', completed: false},
-        {id: 2, task: 'Walk dogs', completed: false},
-        {id: 3, task: 'Freeze water', completed: false},
+        {id: uuidv4(), task: 'Hunt Rabbits', completed: false},
+        {id: uuidv4(), task: 'Walk dogs', completed: false},
+        {id: uuidv4(), task: 'Freeze water', completed: false},
     ];
     const [todos, setTodos] = useState(initialTodos);
+    console.log(todos);
 
-    const addTodo = (e) => setTodos([...todos, {id: 4, task: e.target.value, completed: false}]);
+    const addTodo = task => setTodos([...todos, {id: uuidv4(), task: task, completed: false}]);
 
     const deleteTodo = id => setTodos(todos.filter( todo => todo.id !== id));
 
-    const setCompleted = compTodo => {
-        const completedTodo = todos.find(todo => todo.id === compTodo.id);
-        completedTodo.completed = !completedTodo.completed;
-        const allTodos = todos.filter(todo => todo.id !== compTodo.id);
-        setTodos([...allTodos, completedTodo])
-    }
+    const toggleCompleted = id => setTodos(todos.map( todo => todo.id === id ? {...todo, completed: !todo.completed} : todo));
+    
 
     const editTodo = (newTask, id)=> {
         const editedTodo = todos.filter(todo => todo.id === id);
         editedTodo.task = newTask;
         setTodos([...todos, editTodo]);
     }
+
+    const todoFunctions = { addTodo, deleteTodo, toggleCompleted, editTodo};
 
     return (
         <Paper style={paperStyles}>
@@ -51,9 +51,7 @@ const TodoListHooks = () => {
                     <TodoForm addTodo={addTodo} />
                     <TodoList 
                         todos={todos} 
-                        editTodo={editTodo}
-                        deleteTodo={deleteTodo}
-                        setCompleted={setCompleted}
+                        todoFunctions={todoFunctions}
                     />
                 </Grid>
             </Grid>
