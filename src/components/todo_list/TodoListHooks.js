@@ -33,7 +33,7 @@ const TodoListHooks = () => {
                 style={{height: "64px"}}
                 >   
                     <Toolbar>
-                        <Typography color='inherit'>Todos with Hooks</Typography>
+                        <Typography color='inherit'>Todos with Context & Hooks</Typography>
                     </Toolbar>
             </AppBar>
             <Grid container justifyContent='center'>
