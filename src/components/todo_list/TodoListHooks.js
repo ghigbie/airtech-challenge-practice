@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { Typography, Paper, AppBar, Toolbar, Grid} from "@material-ui/core";
 import { v4 as uuidv4 } from 'uuid';
 import TodoForm from './TodoForm';
@@ -33,7 +32,7 @@ const TodoListHooks = () => {
                 style={{height: "64px"}}
                 >   
                     <Toolbar>
-                        <Typography color='inherit'>Todos with Context & Hooks</Typography>
+                        <Typography color='inherit'>Todos with Hooks</Typography>
                     </Toolbar>
             </AppBar>
             <Grid container justifyContent='center'>

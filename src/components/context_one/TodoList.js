@@ -1,7 +1,11 @@
+import {useContext} from 'react';
 import { List, Paper, Divider } from "@material-ui/core";
 import Todo from './Todo'
+import {TodosContext } from './context/TodosContext';
 
-const TodoList = ({todos, todoFunctions}) => {
+const TodoList = () => {
+    const {todos, todoFunctions} = useContext(TodosContext);
+
     if(todos.length){
         return (
             <Paper style={{margin: "1rem 0", padding: "0 1rem"}}>

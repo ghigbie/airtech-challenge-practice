@@ -4,6 +4,7 @@ import IndecisionApp from './components/classBased/IndecisionApp';
 import TodoListHooks from './components/todo_list/TodoListHooks';
 import WordTableApp from './components/code_sandbox/WordTableApp';
 import ContextTodoApp from './components/context_one/ContextTodoApp';
+import {TodosProvider} from './components/context_one/context/TodosContext';
 
 const options = [
         'Walk the dog',
@@ -17,7 +18,9 @@ const App = () => (
       <hr/>
       <TodoListHooks />
       <hr />
-      <ContextTodoApp />
+       <TodosProvider>
+         <ContextTodoApp />
+       </TodosProvider>
       <hr/>
       <WordTableApp />
     </Layout>
