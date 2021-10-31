@@ -12,7 +12,7 @@ const paperStyles = {
     backgroundColor: '#fafafa'
 }
 
-const TodoListHooks = () => {
+const ContextTodoApp = () => {
     const [todos, setTodos] = useLocalStorageState("todos");
 
     const addTodo = task => setTodos([...todos, {id: uuidv4(), task: task, completed: false}]);
@@ -49,4 +49,4 @@ const TodoListHooks = () => {
     )
 }
 
-export default TodoListHooks
+export default ContextTodoApp
