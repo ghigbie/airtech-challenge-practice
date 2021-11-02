@@ -5,6 +5,8 @@ import TodoListHooks from './components/todo_list/TodoListHooks';
 import WordTableApp from './components/code_sandbox/WordTableApp';
 import ContextTodoApp from './components/context_one/ContextTodoApp';
 import {TodosProvider} from './components/context_one/context/TodosContext';
+import ReducerContextCounter from './components/reducer_context_app/ReducerContextCounter';
+import {CountProvider} from './components/reducer_context_app/context/CounterContext';
 
 const options = [
         'Walk the dog',
@@ -23,6 +25,10 @@ const App = () => (
        </TodosProvider>
       <hr/>
       <WordTableApp />
+      <hr />
+      <CountProvider >
+        <ReducerContextCounter />
+      </CountProvider>
     </Layout>
 );
 
