@@ -1,6 +1,6 @@
 import {useContext} from 'react';
 import { Paper, TextField} from "@material-ui/core";
-import { TodosContext } from './context/TodosContext';
+import { DispatchContext  } from './context/TodosContext';
 import useInputState from './hooks/useInputState';
 
 const fromStyles = {
@@ -8,7 +8,7 @@ const fromStyles = {
     padding: "0 1rem"
 }
 const TodoForm = () => {
-    const {todoFunctions} = useContext(TodosContext);
+    const dispatch = useContext(DispatchContext);
     const [value, handleChange, reset] = useInputState();
 
     return (
@@ -16,7 +16,7 @@ const TodoForm = () => {
             <form 
                 onSubmit={ e => {
                     e.preventDefault()
-                    todoFunctions.addTodo(value);
+                    dispatch({type: 'ADD', task: value});
                     reset();
                 }}
             >

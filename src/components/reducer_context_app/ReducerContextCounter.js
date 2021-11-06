@@ -2,8 +2,6 @@ import { useReducer} from 'react'
 // import { CountContext } from './context/CountContext'
 
 const reducer = (state, action) => {
-
-    console.log('reducer called');
     // eslint-disable-next-line default-case
     switch(action.type){
         case "INCREMENT":
@@ -12,6 +10,8 @@ const reducer = (state, action) => {
             return {count: state.count - action.amount}
         case "RESET":
             return {count: 0}
+        default:
+            return state;
     }
 }
 

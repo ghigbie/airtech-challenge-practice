@@ -1,4 +1,5 @@
-import { createContext, useState } from "react";
+import { createContext, useReducer} from "react";
+import todosReducer from './../reducers/todosReducer';
 import { v4 as uuidv4 } from 'uuid';
 
 const starterTodos = [
@@ -8,24 +9,17 @@ const starterTodos = [
 ];
 
 
-export const TodosContext = createContext()
+export const TodosContext = createContext();
+export const DispatchContext = createContext();
 
 export const TodosProvider = ({children}) => {
-    const [todos, setTodos] = useState(starterTodos)
-
-    const addTodo = task => setTodos([...todos, {id: uuidv4(), task: task, completed: false}]);
-
-    const deleteTodo = id => setTodos(todos.filter( todo => todo.id !== id));
-
-    const toggleCompleted = id => setTodos(todos.map( todo => todo.id === id ? {...todo, completed: !todo.completed} : todo));
-
-    const editTodo = (newTask, id)=> setTodos(todos.map(todo => todo.id === id ? {...todo, task: newTask} : todo));
-
-   const todoFunctions = { addTodo, deleteTodo, toggleCompleted, editTodo};
+    const [todos, dispatch] = useReducer(todosReducer, starterTodos);
 
     return (
-        <TodosContext.Provider value={{todos, todoFunctions}}>
-            {children}
+        <TodosContext.Provider value={todos}>
+            <DispatchContext.Provider value={dispatch}>
+                {children}
+            </DispatchContext.Provider>
         </TodosContext.Provider>
     )
 }

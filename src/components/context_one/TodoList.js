@@ -1,10 +1,11 @@
 import {useContext} from 'react';
 import { List, Paper, Divider } from "@material-ui/core";
 import Todo from './Todo'
-import {TodosContext } from './context/TodosContext';
+import {TodosContext, DispatchContext} from './context/TodosContext';
 
 const TodoList = () => {
-    const {todos, todoFunctions} = useContext(TodosContext);
+    const todos = useContext(TodosContext);
+    const dispatch = useContext(DispatchContext);
 
     if(todos.length){
         return (
@@ -14,7 +15,7 @@ const TodoList = () => {
                         <div key={todo.id} >
                             <Todo 
                                 {...todo}
-                                {...todoFunctions}
+                                dispatch={dispatch}
                             />
                             {index < todos.length -1 && <Divider />}
                         </div>

@@ -6,14 +6,14 @@ const formStyles = {
     width: "50%"
 }
 
-const EditTodoForm = ({editTodo, id, task, toggleIsEditing}) => {
+const EditTodoForm = ({dispatch, id, task, toggleIsEditing}) => {
     const [value, handleChange, reset] = useInputState(task);
 
     return (
             <form 
                 onSubmit={ e => {
                     e.preventDefault()
-                    editTodo(value, id);
+                    dispatch({type: 'EDIT', task: value, id});
                     toggleIsEditing();
                     reset();
                 }}

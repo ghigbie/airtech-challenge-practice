@@ -3,14 +3,15 @@ import {Delete, Edit} from "@material-ui/icons"
 import EditTodoForm from './EditTodoForm';
 import useToggleState from './hooks/useToggleState';
 
-const Todo = ({ task, completed, id, deleteTodo, editTodo, toggleCompleted }) => {
+
+const Todo = ({ task, completed, id, dispatch}) => {
     const [isEditing, toggleIsEditing] = useToggleState();
 
     return (
         <ListItem style={{height: "64px"}}>
             { isEditing ? 
                (<EditTodoForm 
-                    editTodo={editTodo} 
+                    dispatch={dispatch} 
                     toggleIsEditing={toggleIsEditing} 
                     task={task}
                     id={id}
@@ -20,7 +21,7 @@ const Todo = ({ task, completed, id, deleteTodo, editTodo, toggleCompleted }) =>
                 <Checkbox 
                     tabIndex={-1} 
                     checked={completed}
-                    onClick={() => toggleCompleted(id)}
+                    onClick={() => dispatch({type: 'TOGGLE_COMPLETE', id})}
                 />
                 <ListItemText 
                     style={{textDecoration: completed ? "line-through" : "none"}}
@@ -31,7 +32,7 @@ const Todo = ({ task, completed, id, deleteTodo, editTodo, toggleCompleted }) =>
                 <ListItemSecondaryAction>
                     <IconButton 
                         aria-label="delete"
-                        onClick={() => deleteTodo(id)}
+                        onClick={() => dispatch({type: 'DELETE', id})}
                     >
                         <Delete/>
                     </IconButton>      
