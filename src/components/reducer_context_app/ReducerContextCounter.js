@@ -40,6 +40,12 @@ const ReducerContextCounter = () => {
                     Increment By 5
                 </button>
                 <div style={{width: '32px'}} ></div>
+                                <button 
+                    onClick={() => dispatch({type: 'DECREMENT', amount: 5})}
+                >
+                    Decrement By 5
+                </button>
+                <div style={{width: '32px'}} ></div>
                 <button 
                     onClick={() => dispatch({type: 'RESET'})}
                 >
